@@ -1,12 +1,16 @@
 <?php
-
+	session_start();
 	class shop{
 
 		public function addcommodity($name){
 			
 			//array_push($commodity,$name); //商品陣列
-			$arr_a = array("a", "b", "c");
-			return array_merge($arr_a, $name);
+			$arr_a = array("a", "b", "c"); 
+			$result=array_merge($arr_a, $name);
+			$result2=implode(",",$result);
+			$length=count($result);
+			$_SESSION["len"]=$length;
+			return $result2;
 
 		}
 
@@ -21,6 +25,7 @@
 		} 
 		public function commoditysum(){
 
+			return $_SESSION["len"];
 
 
 		}
@@ -36,4 +41,8 @@
 	$name=array("jacky","aaa","tony");
 	print_r($result->addcommodity($name));
 	
+	echo '<hr>';
+	echo $result->commoditysum();
+
+
 ?>
